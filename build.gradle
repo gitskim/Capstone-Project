@@ -1,0 +1,102 @@
+project.ext {
+    appcompatVersion = "23.2.1"
+    recyclerviewVersion = "23.2.1"
+    junitVersion = "4.12"
+    junitRunnerVersion = "0.3"
+    robolectricVersion = "3.0"
+    daggerVersion = "2.0.2"
+    mockitoVersion = "1.10.19"
+    butterknifeVersion = "7.0.1"
+    powerMockVersion = "1.6.3"
+    helpshiftVersion = "4.3.0-support"
+    leakCanaryVersion = "1.3.1"
+    javaxAnnotationVersion = "3.2-b06"
+    multidexVersion = "1.0.1"
+    upsightVersion = "2.2.6"
+    mockWebServerVersion = "2.6.0"
+    eventbusVersion = "2.4.1"
+    espressoVersion = "2.2"
+    supportAnnotationsVersion = "23.2.1"
+    cardviewVersion = "23.2.1"
+    designLibraryVersion = "23.2.1"
+    firebaseVersion = "2.4.0"
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.bgirlogic.flare"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/LICENSE'
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile "com.android.support:appcompat-v7:$project.appcompatVersion"
+    compile "com.android.support:recyclerview-v7:$project.recyclerviewVersion"
+    compile "com.android.support:cardview-v7:$project.cardviewVersion"
+    compile "com.android.support:design:$project.designLibraryVersion"
+    compile "com.google.dagger:dagger:$project.daggerVersion"
+    compile "com.jakewharton:butterknife:$project.butterknifeVersion"
+    compile "com.firebase:firebase-client-android:$project.firebaseVersion"
+
+    testCompile "junit:junit:$project.junitVersion"
+    testCompile("org.robolectric:robolectric:$project.robolectricVersion") {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    testCompile "org.powermock:powermock-api-mockito:$project.powerMockVersion"
+    testCompile "org.powermock:powermock-module-junit4-rule-agent:$project.powerMockVersion"
+    testCompile "org.powermock:powermock-classloading-xstream:$project.powerMockVersion"
+    testCompile "org.powermock:powermock-module-junit4-rule:$project.powerMockVersion"
+    testCompile "org.powermock:powermock-module-junit4:$project.powerMockVersion"
+    testCompile "com.squareup.okhttp:mockwebserver:$project.mockWebServerVersion"
+
+    // Force usage of support annotations in the test app, since it is internally used by the runner module.
+    androidTestCompile "com.android.support:support-annotations:$project.supportAnnotationsVersion"
+    androidTestCompile "com.android.support.test:runner:$project.junitRunnerVersion"
+    androidTestCompile "com.android.support.test:rules:$project.junitRunnerVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$project.espressoVersion"
+    androidTestCompile "org.mockito:mockito-core:$project.mockitoVersion"
+
+    apt "com.google.dagger:dagger-compiler:$project.daggerVersion"
+
+    provided "org.glassfish:javax.annotation:$project.javaxAnnotationVersion"
+    compile 'com.android.support:support-v4:23.2.1'
+}
