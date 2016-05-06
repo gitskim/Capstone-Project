@@ -2,11 +2,14 @@ package com.bgirlogic.flare;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 
 /**
  * Created by kimsuh on 3/26/16.
  */
 public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
+
+    private static final String TAG = FragmentPagerAdapter.class.getSimpleName();
 
     private String tabTitles[] = new String[]{"Home", "Favorites"};
 
@@ -16,6 +19,7 @@ public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAd
 
     @Override
     public Fragment getItem(int position) {
+        Log.d(TAG, "position is: "+position);
         return HomeFragment.newInstance();
     }
 
