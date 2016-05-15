@@ -2,6 +2,4 @@
     <string name="app_name">Flare</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
-    <string name="muse_base_url">https://api-v2.themuse.com</string>
-    <string name="muse_query_page">page</string>
 </resources>
