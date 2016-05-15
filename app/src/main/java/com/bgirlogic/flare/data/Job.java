@@ -9,14 +9,8 @@ import java.util.List;
  */
 public class Job {
 
-    @SerializedName("company")
-    private List<Company> companies;
-
     @SerializedName("publication_date")
     private String publication_date;
-
-    @SerializedName("id")
-    private String id;
 
     @SerializedName("contents")
     private String contents;
@@ -24,16 +18,47 @@ public class Job {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("type")
-    private String type;
+    @SerializedName("company")
+    private List<Company> company;
 
+    @SerializedName("id")
+    private String id;
 
-    public List<Company> getCompanies() {
-        return companies;
+    @Override
+    public String toString() {
+        return "Job{" +
+                "publication_date='" + publication_date + '\'' +
+                ", contents='" + contents + '\'' +
+                ", name='" + name + '\'' +
+                ", company=" + company +
+                ", id='" + id + '\'' +
+                '}';
     }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Job job = (Job) o;
+
+        if (publication_date != null ? !publication_date.equals(job.publication_date) : job.publication_date != null)
+            return false;
+        if (contents != null ? !contents.equals(job.contents) : job.contents != null) return false;
+        if (name != null ? !name.equals(job.name) : job.name != null) return false;
+        if (company != null ? !company.equals(job.company) : job.company != null) return false;
+        return id != null ? id.equals(job.id) : job.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = publication_date != null ? publication_date.hashCode() : 0;
+        result = 31 * result + (contents != null ? contents.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (company != null ? company.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        return result;
     }
 
     public String getPublication_date() {
@@ -42,14 +67,6 @@ public class Job {
 
     public void setPublication_date(String publication_date) {
         this.publication_date = publication_date;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getContents() {
@@ -68,52 +85,19 @@ public class Job {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public List<Company> getCompany() {
+        return company;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCompany(List<Company> company) {
+        this.company = company;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Job job = (Job) o;
-
-        if (companies != null ? !companies.equals(job.companies) : job.companies != null)
-            return false;
-        if (publication_date != null ? !publication_date.equals(job.publication_date) : job.publication_date != null)
-            return false;
-        if (id != null ? !id.equals(job.id) : job.id != null) return false;
-        if (contents != null ? !contents.equals(job.contents) : job.contents != null) return false;
-        if (name != null ? !name.equals(job.name) : job.name != null) return false;
-        return type != null ? type.equals(job.type) : job.type == null;
-
+    public String getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        int result = companies != null ? companies.hashCode() : 0;
-        result = 31 * result + (publication_date != null ? publication_date.hashCode() : 0);
-        result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (contents != null ? contents.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Job{" +
-                "companies=" + companies +
-                ", publication_date='" + publication_date + '\'' +
-                ", id='" + id + '\'' +
-                ", contents='" + contents + '\'' +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+    public void setId(String id) {
+        this.id = id;
     }
 }
