@@ -1,6 +1,6 @@
 package com.bgirlogic.flare;
 
-import com.bgirlogic.flare.data.Results;
+import com.bgirlogic.flare.data.Response1;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,7 +36,7 @@ public class MuseRetrofitApiClient implements MuseRetrofitService {
     }
 
     @Override
-    public Results getInitialResults(@Query("page") String page) {
+    public Response1 getInitialResults(@Query("page") String page) {
         return mRetrofit.create(MuseRetrofitService.class).getInitialResults(page);
     }
 }

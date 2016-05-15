@@ -1,6 +1,6 @@
 package com.bgirlogic.flare;
 
-import com.bgirlogic.flare.data.Results;
+import com.bgirlogic.flare.data.Response1;
 
 import retrofit.http.GET;
 import retrofit.http.Query;
@@ -11,5 +11,5 @@ import retrofit.http.Query;
  */
 public interface MuseRetrofitService {
     @GET("/jobs")
-    Results getInitialResults(@Query("page") String page);
+    Response1 getInitialResults(@Query("page") String page);
 }

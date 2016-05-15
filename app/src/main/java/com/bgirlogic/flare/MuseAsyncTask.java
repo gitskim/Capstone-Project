@@ -3,27 +3,27 @@ package com.bgirlogic.flare;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.bgirlogic.flare.data.Results;
+import com.bgirlogic.flare.data.Response1;
 
 
 /**
  * Created by kimsuh on 5/6/16.
  */
-public class MuseAsyncTask extends AsyncTask<Void, Void, Results> {
+public class MuseAsyncTask extends AsyncTask<Void, Void, Response1> {
 
     private MuseRetrofitApiClient mMuseRetrofitApiClient;
 
-    private Results mResults;
+    private Response1 mResults;
 
     @Override
-    protected Results doInBackground(Void... params) {
+    protected Response1 doInBackground(Void... params) {
         mMuseRetrofitApiClient = new MuseRetrofitApiClient();
-        Results results = mMuseRetrofitApiClient.getInitialResults("0");
+        Response1 results = mMuseRetrofitApiClient.getInitialResults("0");
         return results;
     }
 
     @Override
-    protected void onPostExecute(Results results) {
+    protected void onPostExecute(Response1 results) {
         super.onPostExecute(results);
         Log.d("hola ", " resutls are : " + results.toString());
     }
