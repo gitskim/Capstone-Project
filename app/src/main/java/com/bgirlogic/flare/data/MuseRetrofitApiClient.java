@@ -1,6 +1,6 @@
-package com.bgirlogic.flare;
+package com.bgirlogic.flare.data;
 
-import com.bgirlogic.flare.data.Response1;
+import com.bgirlogic.flare.data.models.Response1;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

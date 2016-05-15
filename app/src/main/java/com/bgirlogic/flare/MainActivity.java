@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.bgirlogic.flare.data.Response1;
+import com.bgirlogic.flare.data.models.Response1;
 
 import java.util.concurrent.ExecutionException;
 

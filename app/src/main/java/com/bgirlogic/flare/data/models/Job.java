@@ -1,8 +1,6 @@
-package com.bgirlogic.flare.data;
+package com.bgirlogic.flare.data.models;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 /**
  * Created by kimsuh on 5/6/16.

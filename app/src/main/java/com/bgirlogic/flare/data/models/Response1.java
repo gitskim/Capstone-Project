@@ -1,4 +1,4 @@
-package com.bgirlogic.flare.data;
+package com.bgirlogic.flare.data.models;
 
 import com.google.gson.annotations.SerializedName;
 

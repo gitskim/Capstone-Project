@@ -3,7 +3,8 @@ package com.bgirlogic.flare;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.bgirlogic.flare.data.Response1;
+import com.bgirlogic.flare.data.MuseRetrofitApiClient;
+import com.bgirlogic.flare.data.models.Response1;
 
 
 /**
