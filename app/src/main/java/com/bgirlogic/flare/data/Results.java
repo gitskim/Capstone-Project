@@ -9,12 +9,29 @@ import java.util.List;
  */
 public class Results {
 
+    @SerializedName("results")
+    private List<Job> results;
+
+    @SerializedName("page_count")
+    private int page_count;
+
+    @SerializedName("page")
+    private int page;
+    
     public List<Job> getResults() {
         return results;
     }
 
     public void setResults(List<Job> results) {
         this.results = results;
+    }
+
+    public int getPage_count() {
+        return page_count;
+    }
+
+    public void setPage_count(int page_count) {
+        this.page_count = page_count;
     }
 
     public int getPage() {
@@ -25,14 +42,6 @@ public class Results {
         this.page = page;
     }
 
-    public int getPageCount() {
-        return pageCount;
-    }
-
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,8 +49,8 @@ public class Results {
 
         Results results1 = (Results) o;
 
+        if (page_count != results1.page_count) return false;
         if (page != results1.page) return false;
-        if (pageCount != results1.pageCount) return false;
         return results != null ? results.equals(results1.results) : results1.results == null;
 
     }
@@ -49,17 +58,17 @@ public class Results {
     @Override
     public int hashCode() {
         int result = results != null ? results.hashCode() : 0;
+        result = 31 * result + page_count;
         result = 31 * result + page;
-        result = 31 * result + pageCount;
         return result;
     }
 
-    @SerializedName("Results")
-    private List<Job> results;
-
-    @SerializedName("page")
-    private int page;
-
-    @SerializedName("page_count")
-    private int pageCount;
+    @Override
+    public String toString() {
+        return "Results{" +
+                "results=" + results +
+                ", page_count=" + page_count +
+                ", page=" + page +
+                '}';
+    }
 }

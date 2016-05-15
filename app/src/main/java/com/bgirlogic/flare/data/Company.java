@@ -6,6 +6,15 @@ import com.google.gson.annotations.SerializedName;
  * Created by kimsuh on 5/6/16.
  */
 public class Company {
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("short_name")
+    private String short_name;
+
+    @SerializedName("id")
+    private String id;
+
     public String getName() {
         return name;
     }
@@ -14,12 +23,12 @@ public class Company {
         this.name = name;
     }
 
-    public String getShortName() {
-        return shortName;
+    public String getShort_name() {
+        return short_name;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
+    public void setShort_name(String short_name) {
+        this.short_name = short_name;
     }
 
     public String getId() {
@@ -38,7 +47,7 @@ public class Company {
         Company company = (Company) o;
 
         if (name != null ? !name.equals(company.name) : company.name != null) return false;
-        if (shortName != null ? !shortName.equals(company.shortName) : company.shortName != null)
+        if (short_name != null ? !short_name.equals(company.short_name) : company.short_name != null)
             return false;
         return id != null ? id.equals(company.id) : company.id == null;
 
@@ -47,7 +56,7 @@ public class Company {
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (shortName != null ? shortName.hashCode() : 0);
+        result = 31 * result + (short_name != null ? short_name.hashCode() : 0);
         result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
     }
@@ -56,18 +65,8 @@ public class Company {
     public String toString() {
         return "Company{" +
                 "name='" + name + '\'' +
-                ", shortName='" + shortName + '\'' +
+                ", short_name='" + short_name + '\'' +
                 ", id='" + id + '\'' +
                 '}';
     }
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("short_name")
-    private String shortName;
-
-    @SerializedName("id")
-    private String id;
-
 }

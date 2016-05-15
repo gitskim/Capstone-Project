@@ -9,6 +9,25 @@ import java.util.List;
  */
 public class Job {
 
+    @SerializedName("company")
+    private List<Company> companies;
+
+    @SerializedName("publication_date")
+    private String publication_date;
+
+    @SerializedName("id")
+    private String id;
+
+    @SerializedName("contents")
+    private String contents;
+
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("type")
+    private String type;
+
+
     public List<Company> getCompanies() {
         return companies;
     }
@@ -17,12 +36,12 @@ public class Job {
         this.companies = companies;
     }
 
-    public String getPublicationDate() {
-        return publicationDate;
+    public String getPublication_date() {
+        return publication_date;
     }
 
-    public void setPublicationDate(String publicationDate) {
-        this.publicationDate = publicationDate;
+    public void setPublication_date(String publication_date) {
+        this.publication_date = publication_date;
     }
 
     public String getId() {
@@ -66,7 +85,7 @@ public class Job {
 
         if (companies != null ? !companies.equals(job.companies) : job.companies != null)
             return false;
-        if (publicationDate != null ? !publicationDate.equals(job.publicationDate) : job.publicationDate != null)
+        if (publication_date != null ? !publication_date.equals(job.publication_date) : job.publication_date != null)
             return false;
         if (id != null ? !id.equals(job.id) : job.id != null) return false;
         if (contents != null ? !contents.equals(job.contents) : job.contents != null) return false;
@@ -78,7 +97,7 @@ public class Job {
     @Override
     public int hashCode() {
         int result = companies != null ? companies.hashCode() : 0;
-        result = 31 * result + (publicationDate != null ? publicationDate.hashCode() : 0);
+        result = 31 * result + (publication_date != null ? publication_date.hashCode() : 0);
         result = 31 * result + (id != null ? id.hashCode() : 0);
         result = 31 * result + (contents != null ? contents.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
@@ -90,30 +109,11 @@ public class Job {
     public String toString() {
         return "Job{" +
                 "companies=" + companies +
-                ", publicationDate='" + publicationDate + '\'' +
+                ", publication_date='" + publication_date + '\'' +
                 ", id='" + id + '\'' +
                 ", contents='" + contents + '\'' +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }
-
-    @SerializedName("company")
-    private List<Company> companies;
-
-    @SerializedName("publication_date")
-    private String publicationDate;
-
-    @SerializedName("id")
-    private String id;
-
-    @SerializedName("contents")
-    private String contents;
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("type")
-    private String type;
-
 }

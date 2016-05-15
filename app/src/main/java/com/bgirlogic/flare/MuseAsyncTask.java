@@ -18,7 +18,8 @@ public class MuseAsyncTask extends AsyncTask<Void, Void, Results> {
     @Override
     protected Results doInBackground(Void... params) {
         mMuseRetrofitApiClient = new MuseRetrofitApiClient();
-        return mMuseRetrofitApiClient.getInitialResults("0");
+        Results results = mMuseRetrofitApiClient.getInitialResults("0");
+        return results;
     }
 
     @Override
