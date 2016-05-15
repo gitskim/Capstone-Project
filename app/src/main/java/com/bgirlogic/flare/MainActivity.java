@@ -42,13 +42,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager1.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()));
         mTabLayout = (TabLayout) findViewById(R.id.tablayout);
         mTabLayout.setupWithViewPager(mViewPager1);
-        try {
-            Response1 whatever = new MuseAsyncTask().execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
