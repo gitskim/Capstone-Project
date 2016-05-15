@@ -21,8 +21,19 @@ public class Job {
     @SerializedName("id")
     private String id;
 
-//    @SerializedName("company")
-//    private Company company;
+    @SerializedName("company")
+    private Company company;
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "publication_date='" + publication_date + '\'' +
+                ", contents='" + contents + '\'' +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", company=" + company +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -35,7 +46,8 @@ public class Job {
             return false;
         if (contents != null ? !contents.equals(job.contents) : job.contents != null) return false;
         if (name != null ? !name.equals(job.name) : job.name != null) return false;
-        return id != null ? id.equals(job.id) : job.id == null;
+        if (id != null ? !id.equals(job.id) : job.id != null) return false;
+        return company != null ? company.equals(job.company) : job.company == null;
 
     }
 
@@ -45,17 +57,8 @@ public class Job {
         result = 31 * result + (contents != null ? contents.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (company != null ? company.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Job{" +
-                "publication_date='" + publication_date + '\'' +
-                ", contents='" + contents + '\'' +
-                ", name='" + name + '\'' +
-                ", id='" + id + '\'' +
-                '}';
     }
 
     public String getPublication_date() {
@@ -88,5 +91,13 @@ public class Job {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }
