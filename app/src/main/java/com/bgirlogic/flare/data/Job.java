@@ -18,22 +18,11 @@ public class Job {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("company")
-    private List<Company> company;
-
     @SerializedName("id")
     private String id;
 
-    @Override
-    public String toString() {
-        return "Job{" +
-                "publication_date='" + publication_date + '\'' +
-                ", contents='" + contents + '\'' +
-                ", name='" + name + '\'' +
-                ", company=" + company +
-                ", id='" + id + '\'' +
-                '}';
-    }
+//    @SerializedName("company")
+//    private Company company;
 
     @Override
     public boolean equals(Object o) {
@@ -46,7 +35,6 @@ public class Job {
             return false;
         if (contents != null ? !contents.equals(job.contents) : job.contents != null) return false;
         if (name != null ? !name.equals(job.name) : job.name != null) return false;
-        if (company != null ? !company.equals(job.company) : job.company != null) return false;
         return id != null ? id.equals(job.id) : job.id == null;
 
     }
@@ -56,9 +44,18 @@ public class Job {
         int result = publication_date != null ? publication_date.hashCode() : 0;
         result = 31 * result + (contents != null ? contents.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (company != null ? company.hashCode() : 0);
         result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "publication_date='" + publication_date + '\'' +
+                ", contents='" + contents + '\'' +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 
     public String getPublication_date() {
@@ -83,14 +80,6 @@ public class Job {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Company> getCompany() {
-        return company;
-    }
-
-    public void setCompany(List<Company> company) {
-        this.company = company;
     }
 
     public String getId() {
