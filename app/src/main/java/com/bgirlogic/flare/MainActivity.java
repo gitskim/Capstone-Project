@@ -13,10 +13,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.bgirlogic.flare.data.models.Response1;
-
-import java.util.concurrent.ExecutionException;
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
