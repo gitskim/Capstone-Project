@@ -9,6 +9,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_circle" />
 
     </LinearLayout>
 
@@ -21,11 +25,11 @@
         <TextView
             android:id="@+id/job_name"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/job_company"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
