@@ -22,6 +22,7 @@ project.ext {
     cardviewVersion = "23.2.1"
     designLibraryVersion = "23.2.1"
     firebaseVersion = "2.4.0"
+    googlePlayServicesVersion = "7.8.0"
 }
 
 apply plugin: 'com.android.application'
@@ -29,7 +30,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.bgirlogic.flare"
@@ -81,6 +82,7 @@ dependencies {
     compile "com.squareup.retrofit:retrofit:$project.retrofitVersion"
     compile "com.squareup.okhttp:okhttp:$project.okhttpVersion"
     compile "com.google.code.gson:gson:$project.gsonVersion"
+    compile "com.google.android.gms:play-services:$project.googlePlayServicesVersion"
 
     testCompile "junit:junit:$project.junitVersion"
     testCompile("org.robolectric:robolectric:$project.robolectricVersion") {
