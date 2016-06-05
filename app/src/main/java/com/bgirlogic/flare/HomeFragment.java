@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            mResponse = new MuseAsyncTask().execute().get();
+            mResponse = new MuseAsyncTask(getContext()).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

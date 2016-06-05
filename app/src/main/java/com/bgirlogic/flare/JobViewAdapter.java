@@ -1,6 +1,7 @@
 package com.bgirlogic.flare;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,12 @@ public class JobViewAdapter extends RecyclerView.Adapter<JobViewHolder> {
     @Override
     public void onBindViewHolder(JobViewHolder holder, int position) {
         holder.jobName.setText(mResponse.getResults().get(position).getName());
-        holder.companyName.setText(mResponse.getResults().get(position).getCompany().getName());
+        holder.companyName.setText(mResponse.getResults().get(position).getCompany().getShort_name());
     }
 
     @Override
     public int getItemCount() {
+        Log.d("JobViewAdapter", "jobs item count is : " + mResponse.getResults().size());
         return mResponse.getResults().size();
     }
 }
