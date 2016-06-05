@@ -1,4 +1,4 @@
-package com.bgirlogic.flare;
+package com.bgirlogic.flare.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bgirlogic.flare.R;
 import com.bgirlogic.flare.data.models.Response1;
 
 /**

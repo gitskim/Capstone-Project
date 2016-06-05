@@ -1,4 +1,4 @@
-package com.bgirlogic.flare;
+package com.bgirlogic.flare.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.bgirlogic.flare.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,8 +1,10 @@
-package com.bgirlogic.flare;
+package com.bgirlogic.flare.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import com.bgirlogic.flare.R;
 
 /**
  * Created by kimsuh on 5/15/16.

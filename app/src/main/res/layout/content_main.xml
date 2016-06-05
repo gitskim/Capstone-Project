@@ -7,7 +7,7 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.bgirlogic.flare.MainActivity"
+    tools:context=".ui.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <android.support.design.widget.TabLayout
