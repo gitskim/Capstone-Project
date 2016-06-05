@@ -19,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.bgirlogic.flare.MuseAsyncTask;
 import com.bgirlogic.flare.R;
+import com.bgirlogic.flare.data.models.Response1;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -28,6 +30,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements
     private Location mLastLocation;
     private String mLatitudeText = "";
     private String mLongitudeText = "";
+    protected String mZipcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +114,15 @@ public class MainActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_location) {
+            try {
+                Response1 mResponse = new MuseAsyncTask(this, mZipcode).execute().get();
+                Log.d(TAG, "location response " + mResponse.getResults().size());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
             return true;
         }
 
@@ -154,8 +166,8 @@ public class MainActivity extends AppCompatActivity implements
             e.printStackTrace();
         }
 
-        String postalCode = addresses.get(0).getPostalCode();
-        Log.d(TAG, "location postalCode " + postalCode);
+        mZipcode = addresses.get(0).getPostalCode();
+        Log.d(TAG, "location postalCode " + mZipcode);
 
     }
 }

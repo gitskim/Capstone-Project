@@ -42,4 +42,10 @@ public class MuseRetrofitApiClient implements MuseRetrofitService {
     public Response1 getInitialResults(@Query("page") String page) {
         return mRetrofit.create(MuseRetrofitService.class).getInitialResults(page);
     }
+
+    @Override
+    public Response1 getResultsWithLocation(@Query("page") String page,
+                                            @Query("location") String location) {
+        return mRetrofit.create(MuseRetrofitService.class).getResultsWithLocation(page, location);
+    }
 }

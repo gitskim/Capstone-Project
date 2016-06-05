@@ -21,14 +21,26 @@ public class MuseAsyncTask extends AsyncTask<Void, Void, Response1> {
 
     private Context mContext;
 
+    private String mZipcode;
+
     public MuseAsyncTask(Context context) {
         this.mContext = context;
+    }
+
+    public MuseAsyncTask(Context context, String zipCode) {
+        this.mContext = context;
+        this.mZipcode = zipCode;
     }
 
     @Override
     protected Response1 doInBackground(Void... params) {
         mMuseRetrofitApiClient = new MuseRetrofitApiClient();
-        Response1 results = mMuseRetrofitApiClient.getInitialResults("0");
+        Response1 results;
+        if (mZipcode == null) {
+            results = mMuseRetrofitApiClient.getInitialResults("0");
+        } else {
+            results = mMuseRetrofitApiClient.getResultsWithLocation("0", mZipcode);
+        }
         return results;
     }
 

@@ -12,4 +12,8 @@ import retrofit.http.Query;
 public interface MuseRetrofitService {
     @GET("/jobs")
     Response1 getInitialResults(@Query("page") String page);
+
+    @GET("/jobs")
+    Response1 getResultsWithLocation(@Query("page") String page,
+                                     @Query("location") String location);
 }
