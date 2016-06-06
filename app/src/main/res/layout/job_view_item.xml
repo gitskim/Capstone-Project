@@ -26,6 +26,7 @@
             android:id="@+id/job_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/jobs"
             android:ellipsize="end"
             android:maxLines="1" />
 
@@ -33,6 +34,7 @@
             android:id="@+id/job_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/company"
             android:ellipsize="end"
             android:maxLines="1" />
     </LinearLayout>
