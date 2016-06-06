@@ -1,6 +1,7 @@
 package com.bgirlogic.flare;
 
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.firebase.client.Firebase;
@@ -8,7 +9,7 @@ import com.firebase.client.Firebase;
 /**
  * Created by kimsuh on 4/25/16.
  */
-public class App extends Application {
+public class App extends MultiDexApplication {
 
     public static final String TAG = App.class.getSimpleName();
 

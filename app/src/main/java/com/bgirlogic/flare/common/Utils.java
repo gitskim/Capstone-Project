@@ -7,12 +7,10 @@ import android.net.NetworkInfo;
 
 import com.bgirlogic.flare.App;
 
-import javax.inject.Singleton;
 
 /**
  * Created by kimsuh on 12/24/15.
  */
-@Singleton
 public class Utils {
 
     public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w";
