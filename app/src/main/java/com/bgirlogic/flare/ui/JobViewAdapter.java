@@ -1,5 +1,6 @@
 package com.bgirlogic.flare.ui;
 
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,9 +16,17 @@ import com.bgirlogic.flare.data.models.Response1;
 public class JobViewAdapter extends RecyclerView.Adapter<JobViewHolder> {
 
     private Response1 mResponse;
+
+    private Cursor mCursor;
+
     public JobViewAdapter(Response1 response) {
         mResponse = response;
     }
+
+    public JobViewAdapter(Cursor cursor) {
+        mCursor = cursor;
+    }
+
     @Override
     public JobViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -29,13 +38,26 @@ public class JobViewAdapter extends RecyclerView.Adapter<JobViewHolder> {
 
     @Override
     public void onBindViewHolder(JobViewHolder holder, int position) {
-        holder.jobName.setText(mResponse.getResults().get(position).getName());
-        holder.companyName.setText(mResponse.getResults().get(position).getCompany().getShort_name());
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+            if (mCursor.moveToPosition(position)) {
+                Log.d("mcursor", "job name :"+ mCursor.getString(0));
+                Log.d("mcursor", "companyName name :"+ mCursor.getString(1));
+                holder.jobName.setText(mCursor.getString(0));
+                holder.companyName.setText(mCursor.getString(1));
+            }
+        } else {
+            Log.d("mcursor", "mCursor null");
+        }
     }
 
     @Override
     public int getItemCount() {
-        Log.d("JobViewAdapter", "jobs item count is : " + mResponse.getResults().size());
-        return mResponse.getResults().size();
+        Log.d("mcursor", "jobs item count is : " + mCursor.getCount() + "in adapter");
+        return mCursor.getCount();
+    }
+
+    public void setCursor(Cursor mCursor) {
+        this.mCursor = mCursor;
     }
 }

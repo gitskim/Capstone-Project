@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements
     private String mLatitudeText = "";
     private String mLongitudeText = "";
     protected String mZipcode;
+    public static String sZipcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +61,6 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         mViewPager1 = (ViewPager) findViewById(R.id.viewpager);
         mViewPager1.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()));
         mTabLayout = (TabLayout) findViewById(R.id.tablayout);
@@ -115,14 +108,14 @@ public class MainActivity extends AppCompatActivity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_location) {
-            try {
-                Response1 mResponse = new MuseAsyncTask(this, mZipcode).execute().get();
-                Log.d(TAG, "location response " + mResponse.getResults().size());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Response1 mResponse = new MuseAsyncTask(this, mZipcode).execute().get();
+//                Log.d(TAG, "location response " + mResponse.getResults().size());
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
+//            }
             return true;
         }
 
@@ -155,6 +148,14 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    public static String getZipCode() {
+        if (sZipcode != null) {
+            return sZipcode;
+        } else {
+            return "94101";
+        }
+    }
+
     private void getZipCode(double latitude, double longitude) {
         Geocoder geocoder;
         List<Address> addresses = new ArrayList<>();
@@ -167,7 +168,8 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         mZipcode = addresses.get(0).getPostalCode();
-        Log.d(TAG, "location postalCode " + mZipcode);
+        sZipcode = mZipcode;
+        Log.d(TAG, "mcursor location postalCode " + mZipcode);
 
     }
 }

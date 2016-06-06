@@ -23,12 +23,16 @@ public class MuseAsyncTask extends AsyncTask<Void, Void, Response1> {
 
     private String mZipcode;
 
-    public MuseAsyncTask(Context context) {
+    private OnTaskCompleted mListener;
+
+    public MuseAsyncTask(Context context, OnTaskCompleted listener) {
         this.mContext = context;
+        this.mListener = listener;
     }
 
-    public MuseAsyncTask(Context context, String zipCode) {
+    public MuseAsyncTask(Context context, OnTaskCompleted listener, String zipCode) {
         this.mContext = context;
+        this.mListener = listener;
         this.mZipcode = zipCode;
     }
 
@@ -47,17 +51,11 @@ public class MuseAsyncTask extends AsyncTask<Void, Void, Response1> {
     @Override
     protected void onPostExecute(Response1 results) {
         super.onPostExecute(results);
-        Log.d("hola ", " resutls are : " + results.toString());
+        Log.d("hola ", " mcursor results count is : " + results.getResults().size());
+        mListener.onTaskCompleted(results);
+    }
 
-        if (results.getResults().size() > 0) {
-            ContentValues values = new ContentValues();
-            for (int i = 0; i < results.getResults().size(); i++) {
-                values.put(MuseContract.JobEntry.COLUMN_JOB_NAME,
-                        results.getResults().get(i).getName());
-                values.put(MuseContract.JobEntry.COLUMN_COMPANY_NAME,
-                        results.getResults().get(i).getCompany().getShort_name());
-                mContext.getContentResolver().insert(MuseContract.CONTENT_URI, values);
-            }
-        }
+    public interface OnTaskCompleted {
+        void onTaskCompleted(Response1 response1);
     }
 }
