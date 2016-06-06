@@ -22,7 +22,7 @@ project.ext {
     cardviewVersion = "23.2.1"
     designLibraryVersion = "23.2.1"
     firebaseVersion = "2.4.0"
-    googlePlayServicesVersion = "9.0.2"
+    googlePlayServicesVersion = "9.0.1"
 }
 
 apply plugin: 'com.android.application'
