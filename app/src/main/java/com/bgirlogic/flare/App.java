@@ -33,6 +33,10 @@ public class App extends Application {
         sInstance = this;
     }
 
+    public static App getInstance() {
+        return sInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

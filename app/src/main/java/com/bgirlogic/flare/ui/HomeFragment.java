@@ -1,7 +1,6 @@
 package com.bgirlogic.flare.ui;
 
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,9 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bgirlogic.flare.MuseAsyncTask;
 import com.bgirlogic.flare.R;
+import com.bgirlogic.flare.common.Utils;
 import com.bgirlogic.flare.data.models.Response1;
 import com.bgirlogic.flare.data.sql.MuseContract;
 
@@ -52,7 +53,6 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
         super.onCreate(savedInstanceState);
         Log.d("mcursor", "onCreate");
 
-//        new MuseAsyncTask(getContext(), this, MainActivity.getZipCode()).execute();
         mContentResolver = getContext().getContentResolver();
     }
 
@@ -75,14 +75,17 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onStart() {
         super.onStart();
-        try {
-            mResponse = new MuseAsyncTask(getContext(), this, MainActivity.getZipCode()).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        if (Utils.isConnectedToInternet()) {
+            try {
+                mResponse = new MuseAsyncTask(getContext(), this, MainActivity.getZipCode()).execute().get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getActivity(), "INTERNET LOST", Toast.LENGTH_LONG).show();
         }
-
         getActivity().getSupportLoaderManager().initLoader(MUSE_LOADER, null, this);
     }
 
@@ -105,13 +108,14 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
         Log.d("mcursor", "onLoadFinished + " + onTaskCompleted);
 
         mCursor = mContentResolver.query(
-                    MuseContract.CONTENT_URI,
-                    MuseContract.getProjection(),
-                    null,
-                    null,
-                    null);
+                MuseContract.CONTENT_URI,
+                MuseContract.getProjection(),
+                null,
+                null,
+                null);
 
         mAdapter = new JobViewAdapter(mCursor);
+        mAdapter.setCursor(mCursor);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 //        Log.d("mcursor", "mcursor adapter set " + mCursor.getCount());
@@ -127,16 +131,16 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
     public void onTaskCompleted(Response1 results) {
         Log.d("mcursor", "onTaskCompleted");
 
-        if (results.getResults().size() > 0) {
-            ContentValues values = new ContentValues();
-            for (int i = 0; i < results.getResults().size(); i++) {
-                values.put(MuseContract.JobEntry.COLUMN_JOB_NAME,
-                        results.getResults().get(i).getName());
-                values.put(MuseContract.JobEntry.COLUMN_COMPANY_NAME,
-                        results.getResults().get(i).getCompany().getShort_name());
-                getContext().getContentResolver().insert(MuseContract.CONTENT_URI, values);
-            }
-        }
+//        if (results.getResults().size() > 0) {
+//            ContentValues values = new ContentValues();
+//            for (int i = 0; i < results.getResults().size(); i++) {
+//                values.put(MuseContract.JobEntry.COLUMN_JOB_NAME,
+//                        results.getResults().get(i).getName());
+//                values.put(MuseContract.JobEntry.COLUMN_COMPANY_NAME,
+//                        results.getResults().get(i).getCompany().getShort_name());
+//                getContext().getContentResolver().insert(MuseContract.CONTENT_URI, values);
+//            }
+//        }
         onTaskCompleted = true;
 
         if (onLoadFinished) {
@@ -149,9 +153,9 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
 //            mAdapter.setCursor(mCursor);
 //
 //            mAdapter.notifyDataSetChanged();
-            Uri uri = MuseContract.CONTENT_URI;
-            onLoadFinished(new CursorLoader(getContext(), uri, MuseContract.getProjection(), null, null, null),
-                    mCursor);
+//            Uri uri = MuseContract.CONTENT_URI;
+//            onLoadFinished(new CursorLoader(getContext(), uri, MuseContract.getProjection(), null, null, null),
+//                    mCursor);
         }
     }
 }

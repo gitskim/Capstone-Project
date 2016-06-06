@@ -11,7 +11,7 @@ public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAd
 
     private static final String TAG = FragmentPagerAdapter.class.getSimpleName();
 
-    private String tabTitles[] = new String[]{"Home", "Favorites"};
+    private String tabTitles[] = new String[]{"Home"};
 
     public FragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -25,7 +25,7 @@ public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAd
 
     @Override
     public int getCount() {
-        return 2;
+        return 1;
     }
 
     @Override

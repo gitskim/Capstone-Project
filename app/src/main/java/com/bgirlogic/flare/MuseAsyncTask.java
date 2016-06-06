@@ -36,6 +36,11 @@ public class MuseAsyncTask extends AsyncTask<Void, Void, Response1> {
         this.mZipcode = zipCode;
     }
 
+    public MuseAsyncTask(Context context, String zipCode) {
+        this.mContext = context;
+        this.mZipcode = zipCode;
+    }
+
     @Override
     protected Response1 doInBackground(Void... params) {
         mMuseRetrofitApiClient = new MuseRetrofitApiClient();
@@ -52,7 +57,19 @@ public class MuseAsyncTask extends AsyncTask<Void, Void, Response1> {
     protected void onPostExecute(Response1 results) {
         super.onPostExecute(results);
         Log.d("hola ", " mcursor results count is : " + results.getResults().size());
-        mListener.onTaskCompleted(results);
+
+        if (results.getResults().size() > 0) {
+            ContentValues values = new ContentValues();
+            for (int i = 0; i < results.getResults().size(); i++) {
+                values.put(MuseContract.JobEntry.COLUMN_JOB_NAME,
+                        results.getResults().get(i).getName());
+                values.put(MuseContract.JobEntry.COLUMN_COMPANY_NAME,
+                        results.getResults().get(i).getCompany().getShort_name());
+                mContext.getContentResolver().insert(MuseContract.CONTENT_URI, values);
+            }
+        }
+
+//        mListener.onTaskCompleted(results);
     }
 
     public interface OnTaskCompleted {

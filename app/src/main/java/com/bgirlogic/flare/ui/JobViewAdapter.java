@@ -38,22 +38,17 @@ public class JobViewAdapter extends RecyclerView.Adapter<JobViewHolder> {
 
     @Override
     public void onBindViewHolder(JobViewHolder holder, int position) {
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-            if (mCursor.moveToPosition(position)) {
-                Log.d("mcursor", "job name :"+ mCursor.getString(0));
-                Log.d("mcursor", "companyName name :"+ mCursor.getString(1));
-                holder.jobName.setText(mCursor.getString(0));
-                holder.companyName.setText(mCursor.getString(1));
-            }
-        } else {
-            Log.d("mcursor", "mCursor null");
+        if (mCursor.moveToPosition(position)) {
+//                Log.d("mcursor", "job name :"+ mCursor.getString(0));
+//                Log.d("mcursor", "companyName name :"+ mCursor.getString(1));
+            holder.jobName.setText(mCursor.getString(0));
+            holder.companyName.setText(mCursor.getString(1));
         }
     }
 
     @Override
     public int getItemCount() {
-        Log.d("mcursor", "jobs item count is : " + mCursor.getCount() + "in adapter");
+//        Log.d("mcursor", "jobs item count is : " + mCursor.getCount() + "in adapter");
         return mCursor.getCount();
     }
 
